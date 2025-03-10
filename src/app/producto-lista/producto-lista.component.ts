@@ -1,29 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
 
 @Component({
   selector: 'app-producto-lista',
-  standalone: false,
+  standalone: false,  // O standalone: true si es un componente independiente
   templateUrl: './producto-lista.component.html'
 })
-export class ProductoListaComponent {
-  productos: Producto[];
-    
-  constructor(private productoServicio: ProductoService){}
+export class ProductoListaComponent implements OnInit {
+  productos: Producto[] = [];
 
-  ngOnInit(){
-    //Cargamos los productos
+  // Inyección de dependencias con inject
+  private productoServicio = inject(ProductoService);
+
+  ngOnInit(): void {
     this.obtenerProductos();
   }
 
-  private obtenerProductos(){
-    //Consumir los datos del observable (suscribirnos)
+  private obtenerProductos(): void {
     this.productoServicio.obtenerProductosLista().subscribe(
-      (datos => {
+      (datos) => {
         this.productos = datos;
-      })
+      },
+      (error) => {
+        console.error('Error al obtener los productos', error);
+      }
     );
   }
 
+  // Función para trackBy (opcional)
+  trackByProductoId(index: number, producto: Producto): string {
+    return producto.idProducto;
+  }
 }
