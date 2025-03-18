@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router'; // Para usar el enrutador
 @Component({
   selector: 'app-root',
   standalone: true, // Marca AppComponent como standalone
-  imports: [CommonModule, RouterModule], // Solo necesitas estos módulos
+  imports: [CommonModule, RouterModule], // Importa AgregarProductoComponent
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

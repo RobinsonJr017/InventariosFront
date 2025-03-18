@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { Producto } from '../producto';
 import { ProductoService } from '../producto.service';
 
 @Component({
   selector: 'app-producto-lista',
-  standalone: false,  // O standalone: true si es un componente independiente
+  standalone: true,  // O standalone: true si es un componente independiente
+  imports: [CommonModule], // Importa CommonModule aquí
   templateUrl: './producto-lista.component.html'
 })
 export class ProductoListaComponent implements OnInit {
