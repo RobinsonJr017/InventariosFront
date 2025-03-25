@@ -30,4 +30,8 @@ export class ProductoService {
     return this.clienteHttp.put<Producto>(`${this.urlBase}/editar/${id}`, producto);
   }
 
+  eliminarProducto(id: string): Observable<{eliminado: boolean}> {
+    return this.clienteHttp.delete<{eliminado: boolean}>(`${this.urlBase}/eliminar/${id}`);
+  }
+
 }

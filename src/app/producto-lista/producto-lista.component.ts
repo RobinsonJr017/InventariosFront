@@ -45,4 +45,12 @@ export class ProductoListaComponent implements OnInit {
       })
       .catch(err => console.error('Error al navegar:', err));
   }
+
+  eliminarProducto(id: string): void {
+    this.productoServicio.eliminarProducto(id).subscribe({
+      next: (datos) => this.obtenerProductos(),
+      error: (errores) => console.log(errores)
+    });
+  }
+  
 }
